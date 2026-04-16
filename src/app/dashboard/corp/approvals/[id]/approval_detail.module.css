@@ -1,0 +1,238 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  transition: color var(--transition-fast);
+  width: fit-content;
+}
+
+.back:hover {
+  color: var(--primary);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+.titleInfo h1 {
+  font-size: 1.75rem;
+  color: var(--secondary);
+  margin-bottom: 0.5rem;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.id {
+  color: var(--text-muted);
+  font-family: monospace;
+  font-size: 0.875rem;
+}
+
+.status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.submitted { background: #dbeafe; color: #1e40af; }
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all var(--transition-fast);
+}
+
+.approve { background: var(--accent); color: white; }
+.approve:hover { background: #059669; }
+
+.reject { border: 1px solid var(--danger); color: var(--danger); }
+.reject:hover { background: rgba(239, 68, 68, 0.05); }
+
+.clarify { border: 1px solid var(--warning); color: var(--warning); }
+.clarify:hover { background: rgba(245, 158, 11, 0.05); }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 1.5rem;
+}
+
+.section {
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  background: white;
+  margin-bottom: 1.5rem;
+}
+
+.section h3 {
+  font-size: 1rem;
+  color: var(--secondary);
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.75rem;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.infoItem label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.amountBox {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  color: var(--secondary);
+}
+
+.amount h2 { font-size: 2rem; }
+.amount span { font-size: 0.75rem; color: var(--text-muted); }
+
+.notes {
+  margin-top: 1.5rem;
+}
+
+.notes label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.notes p {
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+}
+
+.recipientList {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipient {
+  display: grid;
+  grid-template-columns: 1fr 1fr 100px;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--border);
+  font-size: 0.875rem;
+}
+
+.reqAmount { font-weight: 600; text-align: right; }
+
+.history {
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  background: white;
+  height: fit-content;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 3.5px;
+  bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+
+.timelineItem {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.timelineDot {
+  position: absolute;
+  left: -13px;
+  top: 5px;
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.log { font-size: 0.875rem; }
+.msg { font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem; font-style: italic; }
+.time { font-size: 0.75rem; color: var(--text-muted); display: block; margin-top: 0.25rem; }
+
+.commentBox {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.commentBox textarea {
+  width: 100%;
+  height: 80px;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  resize: none;
+  font-size: 0.875rem;
+}
+
+.sendBtn {
+  background: var(--secondary);
+  color: white;
+  padding: 0.5rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+}

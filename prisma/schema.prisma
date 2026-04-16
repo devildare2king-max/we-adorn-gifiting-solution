@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Organization {
+  id        String   @id @default(cuid())
+  name      String
+  users     User[]
+  requests  GiftRequest[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id             String       @id @default(cuid())
+  email          String       @unique
+  password       String // Hashed
+  name           String
+  role           String // SUPER_ADMIN, CORP_ADMIN, CORP_USER
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+  organizationId String?
+  requests       GiftRequest[] @relation("Requester")
+  approvals      Activity[]    @relation("Actor")
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+model Product {
+  id           String   @id @default(cuid())
+  title        String
+  description  String
+  image        String?
+  denominations String // Stored as comma-separated or JSON string for SQLite
+  deliveryType String // Email, Bulk
+  validity     String
+  terms        String
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model GiftRequest {
+  id             String       @id @default(cuid())
+  requestId      String       @unique // Human readable ID (e.g. REQ-1234)
+  requester      User         @relation("Requester", fields: [requesterId], references: [id])
+  requesterId    String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
+  status         String       @default("SUBMITTED") // DRAFT, SUBMITTED, UNDER_REVIEW, APPROVED, REJECTED, CLARIFICATION_REQUIRED, COMPLETED
+  totalAmount    Float
+  occasion       String
+  notes          String?
+  recipients     Recipient[]
+  activities     Activity[]
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+model Recipient {
+  id            String      @id @default(cuid())
+  request       GiftRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  requestId     String
+  name          String
+  email         String
+  amount        Float
+  status        String      @default("PENDING") // PENDING, SENT, FAILED
+}
+
+model Activity {
+  id        String      @id @default(cuid())
+  request   GiftRequest @relation(fields: [requestId], references: [id])
+  requestId String
+  actor     User        @relation("Actor", fields: [actorId], references: [id])
+  actorId   String
+  type      String // SUBMITTED, APPROVED, REJECTED, CLARIFIED, COMMENTED
+  message   String
+  createdAt DateTime    @default(now())
+}
