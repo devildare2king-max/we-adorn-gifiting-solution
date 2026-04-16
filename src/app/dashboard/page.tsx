@@ -1,4 +1,6 @@
 import prisma from '@/lib/db'
+export const dynamic = 'force-dynamic'
+
 import { getSession } from '@/lib/auth'
 import styles from './dashboard.module.css'
 import { 

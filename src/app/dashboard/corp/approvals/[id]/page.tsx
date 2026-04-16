@@ -1,4 +1,5 @@
 import prisma from '@/lib/db'
+export const dynamic = 'force-dynamic'
 import { getSession } from '@/lib/auth'
 import styles from './approval_detail.module.css'
 import { 
